@@ -49,11 +49,13 @@ class AuthController extends Controller
             'authMenu' => [
                 [
                     'name' => 'Dashboard',
-                    'path' => '/admin/dashboard'
+                    'path' => '/dashboard',
+                    'icon' => ['fas', 'chart-line'],
                 ],
                 [
                     'name' => 'User',
-                    'path' => '/admin/users'
+                    'path' => '/users',
+                    'icon' => ['fas', 'users'],
                 ],
             ]
         ];
@@ -72,7 +74,7 @@ class AuthController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Successfully logged out'
-        ]);
+        ])->withCookie(Cookie::create('Authorization', ''));
     }
 
     public function generate()

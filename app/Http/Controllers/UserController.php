@@ -68,7 +68,10 @@ class UserController extends Controller
             DB::rollBack();
             dd($e);
         }
+    }
 
+    public function update(Request $request){
+        die('update');
     }
 
 }

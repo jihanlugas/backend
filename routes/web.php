@@ -45,5 +45,6 @@ $router->group([
         $router->get('/', 'UserController@index');
         $router->get('/form', 'UserController@form');
         $router->post('/form', 'UserController@store');
+        $router->put('/form', 'UserController@update');
     });
 });
