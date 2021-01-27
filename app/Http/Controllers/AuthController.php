@@ -78,11 +78,11 @@ class AuthController extends Controller
     public function generate()
     {
         $users = new User;
-        $users->email = 'madinamilatilarta@gmail.com';
-        $users->name = 'Madina Milatil Arta';
+        $users->email = 'jihanlugas2@gmail.com';
+        $users->name = 'Jihan Lugas';
         $users->password = Hash::make('123456');
-        $users->gender = 'Perempuan';
-        $users->role_id = 2;
+        $users->gender = 'MALE';
+        $users->role_id = 1;
         $users->save();
 
         return 'success';
