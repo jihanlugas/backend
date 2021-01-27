@@ -49,11 +49,13 @@ class AuthController extends Controller
             'authMenu' => [
                 [
                     'name' => 'Dashboard',
-                    'path' => '/admin/dashboard'
+                    'path' => '/admin/dashboard',
+                    'icon' => ['fas', 'bars'],
                 ],
                 [
                     'name' => 'User',
-                    'path' => '/admin/users'
+                    'path' => '/admin/users',
+                    'icon' => ['fas', 'users'],
                 ],
             ]
         ];
