@@ -36,7 +36,7 @@ class UserController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'gender' => $user->gender,
-                'roleId' => $user->role_id,
+//                'roleId' => $user->role_id,
             ];
         }else{
             $payload['form'] = [
@@ -44,7 +44,7 @@ class UserController extends Controller
                 'name' => "",
                 'email' => "",
                 'gender' => "",
-                'roleId' => 0,
+//                'roleId' => 2,
             ];
         }
 
@@ -58,7 +58,7 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->gender = $request->gender;
-            $user->role_id = $request->roleId;
+            $user->role_id = 2;
             $user->password = Hash::make('123456');
             $user->save();
 
@@ -71,7 +71,25 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
-        die('update');
+        DB::beginTransaction();
+        try {
+            $user = User::findOrFail($request->userId);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->gender = $request->gender;
+//            $user->role_id = $request->roleId;
+            $user->save();
+
+            DB::commit();
+            return $this->responseWithoutToken();
+        } catch (Throwable $e) {
+            DB::rollBack();
+            dd($e);
+        }
     }
+
+//    private function saveData(){
+//
+//    }
 
 }

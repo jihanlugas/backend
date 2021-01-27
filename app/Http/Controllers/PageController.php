@@ -30,31 +30,15 @@ class PageController extends Controller
         $filters = request('filters');    // Array
 
         $query = User::query();
-
-//        $query->orderBy('first_name','asc');
-
-//        if(!is_null($filters['role_id'])) {
-//            $query->where('role_id','=',$filters['role_id']);
-//        }
-
-//        if(!is_null($filters['state_id'])) {
-//            $query->whereHas('profile',function($q) use ($filters){
-//                return $q->where('state_id','=',$filters['state_id']);
-//            });
-//        }
-//
-//        if(!is_null($filters['city_id'])) {
-//            $query->whereHas('profile',function($q) use ($filters){
-//                return $q->where('city_id','=',$filters['city_id']);
-//            });
-//        }
-
+        $query->where('role_id', '!=', 1);
         $users = $query->paginate(5, '*', 'page', $page);
+
         $payload = [];
 
         $payload['page'] = $users->currentPage();
         $payload['dataPerPage'] = $users->perPage();
         $payload['totalData'] = $users->total();
+        $payload['totalPage'] = ceil($payload['totalData'] / $payload['dataPerPage']);
         foreach ($users as $key => $user){
             $payload['list'][] = [
                 'userId' => $user->id,
