@@ -46,5 +46,6 @@ $router->group([
         $router->get('/form', 'UserController@form');
         $router->post('/form', 'UserController@store');
         $router->put('/form', 'UserController@update');
+        $router->delete('/form', 'UserController@destroy');
     });
 });

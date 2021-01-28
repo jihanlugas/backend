@@ -88,6 +88,20 @@ class UserController extends Controller
         }
     }
 
+    public function destroy(Request $request){
+        DB::beginTransaction();
+        try {
+            $user = User::findOrFail($request->id);
+            $user->delete();
+
+            DB::commit();
+            return $this->responseWithoutToken();
+        } catch (Throwable $e) {
+            DB::rollBack();
+            dd($e);
+        }
+    }
+
 //    private function saveData(){
 //
 //    }

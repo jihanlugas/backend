@@ -39,6 +39,7 @@ class PageController extends Controller
         $payload['dataPerPage'] = $users->perPage();
         $payload['totalData'] = $users->total();
         $payload['totalPage'] = ceil($payload['totalData'] / $payload['dataPerPage']);
+        $payload['list'] = [];
         foreach ($users as $key => $user){
             $payload['list'][] = [
                 'userId' => $user->id,
